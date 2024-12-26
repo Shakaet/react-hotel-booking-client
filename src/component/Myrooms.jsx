@@ -15,7 +15,7 @@ const Myrooms = () => {
   useEffect(() => {
     // Fetch rooms data from API when the component mounts
     axios
-      .get("http://localhost:3000/allRooms")
+      .get("https://hotel-booking-server-opal.vercel.app/allRooms")
       .then((response) => {
         setRooms(response.data); // Set rooms data from the response
         setFilteredRooms(response.data); // Set filtered rooms data initially to all rooms

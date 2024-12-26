@@ -63,10 +63,10 @@ const MyBookings = () => {
       if (result.isConfirmed) {
         // Call API to cancel the booking
         axios
-          .delete(`http://localhost:3000/bookings/${bookingId}`)
+          .delete(`https://hotel-booking-server-opal.vercel.app/bookings/${bookingId}`)
           .then(() => {
             // Update room availability (for example, setting room status to 'available')
-            axios.put(`http://localhost:3000/rooms/${selectedBooking?.data.roomSummary.id}`, {
+            axios.put(`https://hotel-booking-server-opal.vercel.app/rooms/${selectedBooking?.data.roomSummary.id}`, {
               availability: true, // Mark room as available
             });
 
@@ -93,7 +93,7 @@ const MyBookings = () => {
 
   
     axios
-      .put(`http://localhost:3000/bookings/${selectedBooking._id}`, { newDate })
+      .put(`https://hotel-booking-server-opal.vercel.app/bookings/${selectedBooking._id}`, { newDate })
       .then((response) => {
         if (response.status === 200) {
           setBookings((prevBookings) =>
@@ -138,7 +138,7 @@ const MyBookings = () => {
     };
   
     axios
-      .patch("http://localhost:3000/allroom", reviewData)
+      .patch("https://hotel-booking-server-opal.vercel.app/allroom", reviewData)
       .then((response) => {
         if (response) {
           toast.success('Review submitted successfully!');

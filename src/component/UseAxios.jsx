@@ -6,7 +6,7 @@ import { AuthContext } from './AuthProvider';
 
 
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:3000',
+    baseURL: 'https://hotel-booking-server-opal.vercel.app',
     withCredentials: true // Correct property name and syntax
   });
 

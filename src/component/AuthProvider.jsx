@@ -52,7 +52,7 @@ let googleSign=()=>{
             if(CurrentUser){
              let user={email:CurrentUser?.email}
  
-             axios.post("http://localhost:3000/jwt",user,{withCredentials:true})
+             axios.post("https://hotel-booking-server-opal.vercel.app/jwt",user,{withCredentials:true})
              .then(res=>{
             
                setLoading(false)
@@ -60,7 +60,7 @@ let googleSign=()=>{
             }
  
             else{
-             axios.post("http://localhost:3000/logout",{},{withCredentials:true})
+             axios.post("https://hotel-booking-server-opal.vercel.app/logout",{},{withCredentials:true})
              .then(res=>{
             
                setLoading(false)

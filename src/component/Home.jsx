@@ -44,7 +44,7 @@ const Home = () => {
   // Fetch rooms data from the API
   useEffect(() => {
     axios
-      .get('http://localhost:3000/allRooms') // Replace with your API endpoint
+      .get('https://hotel-booking-server-opal.vercel.app/allRooms') // Replace with your API endpoint
       .then((response) => {
         setRooms(response.data); // Store the fetched data in state
         setLoading(false); // Stop loading when data is fetched

@@ -22,7 +22,7 @@ const Details = () => {
   useEffect(() => {
     document.title = "Room Details";
     axios
-      .get(`http://localhost:3000/roomDetails/${id}`)
+      .get(`https://hotel-booking-server-opal.vercel.app/roomDetails/${id}`)
       .then((response) => {
         setRoom(response.data);
         setLoading(false);
@@ -49,7 +49,7 @@ const Details = () => {
     };
 
     axios
-      .post('http://localhost:3000/bookings', bookingData)
+      .post('https://hotel-booking-server-opal.vercel.app/bookings', bookingData)
       .then((response) => {
         if (response.data.success) {
           // Update room state with updated availability
