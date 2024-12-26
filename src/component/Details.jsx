@@ -65,7 +65,7 @@ const Details = () => {
       });
   };
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div>No data avvailable</div>;
 
   return (
     <div className="max-w-4xl mx-auto p-6">

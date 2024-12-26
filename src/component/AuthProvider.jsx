@@ -1,6 +1,7 @@
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import React, { createContext, useEffect, useState} from 'react';
 import auth from './firebase.init';
+import axios from 'axios';
 
 
 export let AuthContext = createContext(null)
@@ -42,13 +43,29 @@ let googleSign=()=>{
       };
 
       useEffect(()=>{
-        let unsubscribe= onAuthStateChanged(auth, (currentUser) => {
+        let unsubscribe= onAuthStateChanged(auth, (CurrentUser) => {
             
+            setUser(CurrentUser)
            
-              setUser(currentUser)
-            //   console.log(currentUser)
-              setLoading(false)
+ 
+ 
+            if(CurrentUser){
+             let user={email:CurrentUser?.email}
+ 
+             axios.post("http://localhost:3000/jwt",user,{withCredentials:true})
+             .then(res=>{
             
+               setLoading(false)
+             })
+            }
+ 
+            else{
+             axios.post("http://localhost:3000/logout",{},{withCredentials:true})
+             .then(res=>{
+            
+               setLoading(false)
+             })
+            }
             
     
             return ()=>{

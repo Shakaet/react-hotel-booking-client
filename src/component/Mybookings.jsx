@@ -7,12 +7,16 @@ import Swal from 'sweetalert2'; // Import SweetAlert2
 import { AuthContext } from './AuthProvider';
 import ReactStars from 'react-rating-stars-component'; // Import React Stars for rating
 import moment from 'moment'; // Import moment.js
+import UseAxios from './UseAxios';
+
+
 
 const MyBookings = () => {
     useEffect(() => {
         document.title = "My Booking Pages"; 
       }, []);
   const { user } = useContext(AuthContext);
+  let axiosInstance=UseAxios()
   const [bookings, setBookings] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedBooking, setSelectedBooking] = useState(null);
@@ -22,8 +26,8 @@ const MyBookings = () => {
   const [comment, setComment] = useState('');
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/mybookingPage/${user?.email}`)
+    axiosInstance
+      .get(`/mybookingPage/${user?.email}`)
       .then((response) => {
         setBookings(response.data);
       })
@@ -110,11 +114,16 @@ const MyBookings = () => {
   
 
   const handleReviewSubmit = (id) => {
-    if (rating < 1 || rating > 5) {
-      toast.error('Please provide a rating between 1 and 5.');
+    // if (rating < 1 || rating > 5) {
+    //   toast.error('Please provide a rating between 1 and 5.');
+    //   return;
+    // }
+    // console.log(id)
+
+    if(rating<1 || rating>5){
+      toast.error("please give the rating between 1 to 5")
       return;
     }
-    // console.log(id)
   
     if (!comment) {
       toast.error('Please enter a comment.');
@@ -270,12 +279,13 @@ const MyBookings = () => {
               <label htmlFor="rating" className="block text-sm font-medium mb-2">
                 Rating
               </label>
-              <ReactStars
-                count={5}
-                onChange={(newRating) => setRating(newRating)}
-                size={24}
-                value={rating}
+              <input
+                type="number"
+                id="username"
+                onChange={(e) => setRating(e.target.value)}
+                className="w-full p-3 border border-gray-300 rounded-md mb-4"
               />
+              
             </div>
             <div className="mb-4">
               <label htmlFor="comment" className="block text-sm font-medium mb-2">
